@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>தரம் 6 – ICT ஊடாடும் வினாடி வினா</title>
+<style>
+:root{--ink:#24304a;--muted:#66718a;--purple:#6c4ce3;--blue:#2677d8;--pink:#e84f9b;--teal:#159b91;--gold:#efa928;--green:#168653;--red:#c83c50;--paper:#fff;--line:#e7eaf3}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Noto Sans Tamil","Latha","Vijaya",system-ui,sans-serif;color:var(--ink);background:linear-gradient(135deg,#eef2ff 0%,#fdf0f8 48%,#e9fbf8 100%)}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.shell{max-width:1050px;margin:auto;padding:22px 16px 48px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,#7052e8,#ed5aa7);display:grid;place-items:center;color:#fff;font-size:25px;box-shadow:0 8px 20px #7253e444}
+.brand h1{font-size:clamp(18px,3vw,25px);margin:0}
+.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:13px;color:var(--muted);white-space:nowrap}
+.card{background:#ffffffed;border:1px solid #ffffff;border-radius:24px;box-shadow:0 14px 45px #34406b12;padding:clamp(18px,4vw,32px)}
+.welcome{text-align:center;padding:clamp(24px,6vw,52px)}
+.hero{font-size:54px;margin-bottom:8px}
+h2{margin:0 0 12px;font-size:clamp(23px,4vw,32px)}
+.lead{color:var(--muted);line-height:1.8;max-width:720px;margin:0 auto 22px}
+.namebox{max-width:430px;margin:22px auto;text-align:left}
+label{display:block;font-weight:700;margin-bottom:8px}
+input[type=text]{width:100%;padding:13px 15px;border:1px solid #dfe3ef;border-radius:13px;background:#fff;outline:none}
+input:focus,select:focus{border-color:var(--purple);box-shadow:0 0 0 3px #6c4ce322}
+.btn{border:0;border-radius:13px;padding:12px 19px;font-weight:800;transition:.2s;box-shadow:0 6px 15px #26345b12}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.03)}
+.primary{background:linear-gradient(110deg,#6b4ce2,#a34fdb);color:white}
+.secondary{background:#eef0fb;color:#424b70}
+.submit{background:linear-gradient(110deg,#159b91,#35b77b);color:white}
+.topstats{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.progress-wrap{height:10px;background:#e9ebf5;border-radius:20px;overflow:hidden;margin:10px 0 18px}
+.progress{height:100%;width:0;background:linear-gradient(90deg,#6c4ce3,#e84f9b,#159b91);transition:width .25s}
+.quizgrid{display:grid;grid-template-columns:220px 1fr;gap:18px}
+.sidebar{align-self:start}
+.sidebar h3{font-size:15px;margin:0 0 12px}
+.qnav{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.qnum{border:1px solid var(--line);background:#fff;border-radius:10px;min-height:38px;font-weight:700;color:#68718a}
+.qnum.current{background:#6c4ce3;color:#fff;border-color:#6c4ce3}
+.qnum.done{border-color:#8bd0b1;background:#e9fbf2;color:#14754b}
+.section-tag{display:inline-flex;padding:7px 11px;border-radius:999px;font-size:12px;font-weight:800;margin-bottom:12px}
+.tag-mcq{background:#eeeaff;color:#6745ce}.tag-drag{background:#fff1df;color:#a96808}.tag-tf{background:#e5f7f5;color:#087b73}.tag-match{background:#ffeaf3;color:#b63270}
+.question{font-size:clamp(18px,2.8vw,22px);line-height:1.7;margin:0 0 17px}
+.options{display:grid;gap:10px}
+.option{display:flex;align-items:center;gap:11px;text-align:left;padding:13px 14px;border:1.5px solid #e3e7f1;background:#fff;border-radius:14px;color:var(--ink);min-height:52px}
+.option:hover{border-color:#a99af0;background:#faf9ff}
+.option.selected{border-color:var(--purple);background:#f2efff;box-shadow:0 0 0 2px #6c4ce318}
+.optletter{width:28px;height:28px;display:grid;place-items:center;border-radius:9px;background:#f0eff8;color:#6552b7;font-weight:800;flex:none}
+.tfrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tfrow .option{justify-content:center;font-weight:800}
+.bank{display:flex;flex-wrap:wrap;gap:9px;margin:15px 0}
+.chip{border:1px solid #dfd5b7;background:#fff8e9;color:#80540d;padding:10px 13px;border-radius:12px;font-weight:700;touch-action:manipulation}
+.chip.used{opacity:.35;text-decoration:line-through}
+.dropzone{border:2px dashed #d7b66e;background:#fffaf0;border-radius:14px;min-height:62px;padding:12px;display:flex;align-items:center;justify-content:center;color:#8a713e;text-align:center}
+.dropzone.filled{border-style:solid;background:#fff4d9;color:#61480d;font-weight:800}
+.hint{font-size:13px;color:var(--muted);line-height:1.6}
+.matchrow{display:grid;grid-template-columns:1fr 1.2fr;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.matchleft{font-weight:800;background:#f2efff;padding:12px;border-radius:12px}
+select{width:100%;padding:12px;border:1px solid #dfe3ef;border-radius:12px;background:#fff;color:var(--ink)}
+.navbuttons{display:flex;justify-content:space-between;gap:10px;margin-top:25px;flex-wrap:wrap}
+.results{text-align:center}
+.scorecircle{width:170px;height:170px;border-radius:50%;margin:20px auto;background:conic-gradient(#18a477 var(--score),#e9edf4 0);display:grid;place-items:center;position:relative}
+.scorecircle:before{content:"";position:absolute;inset:12px;background:#fff;border-radius:50%}
+.scoreinside{position:relative;z-index:1}
+.scoreinside strong{display:block;font-size:34px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0}
+.stat{background:#f7f8fc;border-radius:15px;padding:15px 8px}
+.stat strong{display:block;font-size:24px}.stat span{font-size:12px;color:var(--muted)}
+.review{text-align:left;margin-top:25px}
+.reviewitem{padding:15px;border:1px solid var(--line);border-radius:14px;margin:10px 0;background:#fff}
+.reviewitem.correct{border-left:5px solid #19a36f}.reviewitem.wrong{border-left:5px solid #d84b5b}
+.reviewitem p{margin:5px 0;line-height:1.6}
+.small{font-size:13px;color:var(--muted)}
+.hidden{display:none!important}
+footer{text-align:center;color:#78819a;font-size:12px;margin-top:18px}
+@media(max-width:760px){.quizgrid{grid-template-columns:1fr}.sidebar{order:2}.qnav{grid-template-columns:repeat(10,1fr)}.stats{grid-template-columns:repeat(2,1fr)}header{align-items:flex-start}.pill{font-size:11px}.card{border-radius:19px}}
+@media(max-width:420px){.shell{padding:14px 10px 30px}.qnav{grid-template-columns:repeat(5,1fr)}.matchrow{grid-template-columns:1fr;gap:7px}.navbuttons .btn{flex:1}.hero{font-size:42px}}
+@media print{body{background:#fff}.shell{max-width:none;padding:0}.no-print,header,footer{display:none!important}.card{box-shadow:none;border:0}.reviewitem{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+ <div class="brand"><div class="logo">📚</div><div><h1>ICT – ஊடாடும் வினாடி வினா</h1><p>தரம் 6 · இலத்திரனியல் நிகழ்த்துகை</p></div></div>
+ <div class="pill">⭐ மொத்தம் 40 புள்ளிகள்</div>
+</header>
+
+<section id="welcome" class="card welcome">
+ <div class="hero">🎓✨</div>
+ <h2>வினாடி வினாவிற்கு வரவேற்கிறோம்!</h2>
+ <p class="lead">இலத்திரனியல் நிகழ்த்துகை மற்றும் MS PowerPoint பற்றிய உங்கள் அறிவைச் சோதித்துப் பாருங்கள். கவனமாக வாசித்து ஒவ்வொரு வினாவிற்கும் விடையளியுங்கள்.</p>
+ <div class="namebox"><label for="studentName">மாணவர் பெயர்</label><input id="studentName" type="text" maxlength="60" placeholder="உங்கள் பெயரை உள்ளிடுக"></div>
+ <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0">
+  <span class="pill">📝 20 வினாக்கள்</span><span class="pill">🏅 ஒவ்வொன்றும் 2 புள்ளிகள்</span><span class="pill">📱 கைப்பேசிக்கு ஏற்றது</span>
+ </div>
+ <p class="hint">நான்கு பகுதிகள்: பல்தேர்வு · இழுத்து விடுதல் · சரி/பிழை · பொருத்துதல்</p>
+ <button class="btn primary" id="startBtn">வினாடி வினாவைத் தொடங்கு 🚀</button>
+</section>
+
+<section id="quiz" class="hidden">
+ <div class="topstats"><div><strong id="studentLabel"></strong><div class="small" id="sectionLabel"></div></div><div class="pill" id="countLabel">வினா 1 / 20</div></div>
+ <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+ <div class="quizgrid">
+  <aside class="card sidebar"><h3>வினா வழிசெலுத்தல்</h3><div class="qnav" id="qnav"></div><p class="hint">பச்சை நிறம் – விடையளிக்கப்பட்டது<br>ஊதா நிறம் – தற்போதைய வினா</p></aside>
+  <main class="card">
+   <div id="questionContent"></div>
+   <div class="navbuttons no-print">
+    <button class="btn secondary" id="prevBtn">← முந்தையது</button>
+    <button class="btn primary" id="nextBtn">அடுத்தது →</button>
+    <button class="btn submit hidden" id="submitBtn">விடைகளைச் சமர்ப்பிக்கவும் ✓</button>
+   </div>
+  </main>
+ </div>
+</section>
+
+<section id="results" class="card results hidden">
+ <div class="hero">🏆</div><h2>உங்கள் பெறுபேறுகள்</h2><p id="resultName" class="lead"></p>
+ <div class="scorecircle" id="scoreCircle"><div class="scoreinside"><strong id="scoreText">0/40</strong><span class="small">மொத்தப் புள்ளிகள்</span></div></div>
+ <h2 id="percentText">0%</h2><p id="feedback" class="lead"></p>
+ <div class="stats">
+  <div class="stat"><strong id="correctCount" style="color:#168653">0</strong><span>சரியானவை</span></div>
+  <div class="stat"><strong id="wrongCount" style="color:#c83c50">0</strong><span>பிழையானவை</span></div>
+  <div class="stat"><strong id="blankCount">0</strong><span>விடையளிக்காதவை</span></div>
+  <div class="stat"><strong>20</strong><span>மொத்த வினாக்கள்</span></div>
+ </div>
+ <div class="navbuttons no-print" style="justify-content:center">
+  <button class="btn primary" onclick="window.print()">🖨️ பெறுபேற்றை அச்சிடுக</button>
+  <button class="btn secondary" id="restartBtn">மீண்டும் முயற்சி செய்க ↻</button>
+ </div>
+ <div class="review"><h2>விடை மதிப்பாய்வு</h2><div id="reviewList"></div></div>
+</section>
+<footer>இணைய இணைப்பு தேவையில்லை · இந்த HTML கோப்பை நேரடியாகத் திறந்து பயன்படுத்தலாம்</footer>
+</div>
+
+<script>
+const questions = [
+ {type:"mcq",section:"பகுதி A – பல்தேர்வு வினாக்கள்",q:"இலத்திரனியல் நிகழ்த்துகையை உருவாக்கப் பயன்படும் மென்பொருள் எது?",opts:["MS Word","MS PowerPoint","MS Paint","Calculator"],a:1,ex:"MS PowerPoint என்பது இலத்திரனியல் நிகழ்த்துகையை உருவாக்கப் பயன்படும் மென்பொருளாகும்."},
+ {type:"mcq",section:"பகுதி A – பல்தேர்வு வினாக்கள்",q:"நிகழ்த்துகையில் ஒவ்வொரு பக்கமும் எவ்வாறு அழைக்கப்படுகிறது?",opts:["படவில்லை (Slide)","கோப்புறை (Folder)","அட்டவணை (Table)","பத்தி (Paragraph)"],a:0,ex:"நிகழ்த்துகையின் ஒவ்வொரு பக்கமும் படவில்லை (Slide) எனப்படும்."},
+ {type:"mcq",section:"பகுதி A – பல்தேர்வு வினாக்கள்",q:"புதிய படவில்லையைச் சேர்ப்பதற்கு எந்தப் பகுதியில் உள்ள 'New Slide' பயன்படுத்தப்படுகிறது?",opts:["Review","View","Home","File"],a:2,ex:"Home பகுதியில் உள்ள New Slide கட்டளையைப் பயன்படுத்தலாம்."},
+ {type:"mcq",section:"பகுதி A – பல்தேர்வு வினாக்கள்",q:"முதல் படவில்லையிலிருந்து நிகழ்த்துகையைக் காண்பிக்க எந்தக் கட்டளையைத் தேர்ந்தெடுக்க வேண்டும்?",opts:["From Current Slide","From Beginning","Save As","New Slide"],a:1,ex:"From Beginning கட்டளை முதல் படவில்லையிலிருந்து காட்சியைத் தொடங்கும். F5 விசையையும் பயன்படுத்தலாம்."},
+ {type:"mcq",section:"பகுதி A – பல்தேர்வு வினாக்கள்",q:"நிகழ்த்துகையைச் சேமிக்கும்போது எவற்றைத் தெரிவுசெய்ய வேண்டும்?",opts:["படத்தின் நிறம் மட்டும்","மாணவர் பெயர் மட்டும்","சேமிக்கும் இடம், கோப்புப் பெயர் மற்றும் கோப்பு வகை","திரையின் அளவு மட்டும்"],a:2,ex:"சேமிக்கும் இடம், கோப்புப் பெயர், கோப்பு வகை ஆகியவற்றைத் தெரிவுசெய்து Save செய்ய வேண்டும்."},
+
+ {type:"drag",section:"பகுதி B – இழுத்து விடுக",q:"சரியான சொல்லைத் தேர்ந்தெடுத்து வெற்றிடத்தில் விடுக: நிகழ்த்துகையை உருவாக்கப் பயன்படும் மென்பொருள் ______ ஆகும்.",bank:["MS PowerPoint","MS Paint","Calculator"],a:"MS PowerPoint",ex:"MS PowerPoint நிகழ்த்துகையை உருவாக்கப் பயன்படுகிறது."},
+ {type:"drag",section:"பகுதி B – இழுத்து விடுக",q:"சரியான சொல்லைத் தேர்ந்தெடுத்து வெற்றிடத்தில் விடுக: புதிய பக்கங்கள் நிகழ்த்துகையில் ______ என அழைக்கப்படுகின்றன.",bank:["Slides","Folders","Tables"],a:"Slides",ex:"நிகழ்த்துகையில் புதிய படவில்லைகள் (Slides) சேர்க்கப்படுகின்றன."},
+ {type:"drag",section:"பகுதி B – இழுத்து விடுக",q:"சரியான சொல்லைத் தேர்ந்தெடுத்து வெற்றிடத்தில் விடுக: முதல் படவில்லையிலிருந்து காட்சியைத் தொடங்கும் கட்டளை ______ ஆகும்.",bank:["From Beginning","From Current Slide","Save"],a:"From Beginning",ex:"From Beginning முதல் படவில்லையிலிருந்து காட்சியைத் தொடங்கும்."},
+ {type:"drag",section:"பகுதி B – இழுத்து விடுக",q:"சரியான சொல்லைத் தேர்ந்தெடுத்து வெற்றிடத்தில் விடுக: நிகழ்த்துகையைச் சேமிக்கப் பயன்படும் கட்டளை ______ ஆகும்.",bank:["Save","Delete","Close"],a:"Save",ex:"Save கட்டளை நிகழ்த்துகையைச் சேமிக்கப் பயன்படுகிறது."},
+ {type:"drag",section:"பகுதி B – இழுத்து விடுக",q:"சரியான சொல்லைத் தேர்ந்தெடுத்து வெற்றிடத்தில் விடுக: படவில்லைக் காட்சியைத் தொடங்குவதற்கு ______ விசையை அழுத்தலாம்.",bank:["F5","F1","Esc"],a:"F5",ex:"F5 விசை From Beginning காட்சியைத் தொடங்கப் பயன்படுகிறது."},
+
+ {type:"tf",section:"பகுதி C – சரி அல்லது பிழை",q:"PowerPoint நிகழ்த்துகையில் புதிய படவில்லைகளைச் சேர்க்கலாம்.",opts:["சரி","பிழை"],a:0,ex:"புதிய படவில்லைகளை நிகழ்த்துகையில் சேர்க்க முடியும்."},
+ {type:"tf",section:"பகுதி C – சரி அல்லது பிழை",q:"From Current Slide கட்டளை முதல் படவில்லையிலிருந்து காட்சியைத் தொடங்கும்.",opts:["சரி","பிழை"],a:1,ex:"From Current Slide என்பது தற்போது தெரிவுசெய்யப்பட்ட படவில்லையிலிருந்து காட்சியைத் தொடங்கும்."},
+ {type:"tf",section:"பகுதி C – சரி அல்லது பிழை",q:"Mouse click, Enter key மற்றும் Arrow Keys மூலம் படவில்லைகளை மாற்றலாம்.",opts:["சரி","பிழை"],a:0,ex:"இம்முறைகள் படவில்லைக் காட்சியின் போது படவில்லைகளை மாற்றப் பயன்படும்."},
+ {type:"tf",section:"பகுதி C – சரி அல்லது பிழை",q:"நிகழ்த்துகையைச் சேமிக்கும்போது கோப்பின் பெயரைத் தெரிவுசெய்ய வேண்டியதில்லை.",opts:["சரி","பிழை"],a:1,ex:"நிகழ்த்துகையைச் சேமிக்கும்போது கோப்புப் பெயரைத் தெரிவுசெய்ய வேண்டும்."},
+ {type:"tf",section:"பகுதி C – சரி அல்லது பிழை",q:"Mobile phone மற்றும் Tablet கணினிகளிலும் நிகழ்த்துகையைப் பார்க்கலாம்.",opts:["சரி","பிழை"],a:0,ex:"பாடப்புத்தகத்தில் Mobile phone மற்றும் Tablet கணினிகளிலும் பார்க்கலாம் எனக் குறிப்பிடப்பட்டுள்ளது."},
+
+ {type:"match",section:"பகுதி D – பொருத்துக",q:"சரியான இணையைத் தெரிவுசெய்க: MS PowerPoint",opts:["இலத்திரனியல் நிகழ்த்துகை மென்பொருள்","முதல் படவில்லையிலிருந்து காட்சி","நிகழ்த்துகையைச் சேமித்தல்","தற்போதைய படவில்லையிலிருந்து காட்சி","புதிய படவில்லையைச் சேர்த்தல்"],a:0,ex:"MS PowerPoint – இலத்திரனியல் நிகழ்த்துகை மென்பொருள்."},
+ {type:"match",section:"பகுதி D – பொருத்துக",q:"சரியான இணையைத் தெரிவுசெய்க: From Beginning",opts:["இலத்திரனியல் நிகழ்த்துகை மென்பொருள்","முதல் படவில்லையிலிருந்து காட்சி","நிகழ்த்துகையைச் சேமித்தல்","தற்போதைய படவில்லையிலிருந்து காட்சி","புதிய படவில்லையைச் சேர்த்தல்"],a:1,ex:"From Beginning – முதல் படவில்லையிலிருந்து காட்சி."},
+ {type:"match",section:"பகுதி D – பொருத்துக",q:"சரியான இணையைத் தெரிவுசெய்க: Save",opts:["இலத்திரனியல் நிகழ்த்துகை மென்பொருள்","முதல் படவில்லையிலிருந்து காட்சி","நிகழ்த்துகையைச் சேமித்தல்","தற்போதைய படவில்லையிலிருந்து காட்சி","புதிய படவில்லையைச் சேர்த்தல்"],a:2,ex:"Save – நிகழ்த்துகையைச் சேமித்தல்."},
+ {type:"match",section:"பகுதி D – பொருத்துக",q:"சரியான இணையைத் தெரிவுசெய்க: From Current Slide",opts:["இலத்திரனியல் நிகழ்த்துகை மென்பொருள்","முதல் படவில்லையிலிருந்து காட்சி","நிகழ்த்துகையைச் சேமித்தல்","தற்போதைய படவில்லையிலிருந்து காட்சி","புதிய படவில்லையைச் சேர்த்தல்"],a:3,ex:"From Current Slide – தற்போதைய படவில்லையிலிருந்து காட்சி."},
+ {type:"match",section:"பகுதி D – பொருத்துக",q:"சரியான இணையைத் தெரிவுசெய்க: New Slide",opts:["இலத்திரனியல் நிகழ்த்துகை மென்பொருள்","முதல் படவில்லையிலிருந்து காட்சி","நிகழ்த்துகையைச் சேமித்தல்","தற்போதைய படவில்லையிலிருந்து காட்சி","புதிய படவில்லையைச் சேர்த்தல்"],a:4,ex:"New Slide – புதிய படவில்லையைச் சேர்த்தல்."}
+];
+let answers=Array(questions.length).fill(null), current=0, submitted=false, selectedChip=null;
+const $=id=>document.getElementById(id);
+function start(){ $("welcome").classList.add("hidden");$("quiz").classList.remove("hidden");$("studentLabel").textContent="மாணவர்: "+($("studentName").value.trim()||"பெயர் குறிப்பிடப்படவில்லை");renderNav();renderQuestion();}
+function renderNav(){ $("qnav").innerHTML="";questions.forEach((q,i)=>{let b=document.createElement("button");b.className="qnum"+(i===current?" current":"")+(answers[i]!==null?" done":"");b.textContent=i+1;b.setAttribute("aria-label","வினா "+(i+1));b.onclick=()=>{current=i;renderQuestion()};$("qnav").appendChild(b)});}
+function renderQuestion(){
+ const q=questions[current], content=$("questionContent"); selectedChip=null;
+ $("countLabel").textContent=`வினா ${current+1} / ${questions.length}`;
+ $("sectionLabel").textContent=q.section;
+ $("progress").style.width=((answers.filter(x=>x!==null).length/questions.length)*100)+"%";
+ $("prevBtn").disabled=current===0;$("prevBtn").style.opacity=current===0?".45":"1";
+ $("nextBtn").classList.toggle("hidden",current===questions.length-1);
+ $("submitBtn").classList.toggle("hidden",current!==questions.length-1);
+ let tag=q.type==="mcq"?"tag-mcq":q.type==="drag"?"tag-drag":q.type==="tf"?"tag-tf":"tag-match";
+ let typeLabel=q.type==="mcq"?"பல்தேர்வு":q.type==="drag"?"இழுத்து விடுக":q.type==="tf"?"சரி / பிழை":"பொருத்துக";
+ let html=`<span class="section-tag ${tag}">${typeLabel} · 2 புள்ளிகள்</span><h2 class="question">${current+1}. ${q.q}</h2>`;
+ if(q.type==="mcq"||q.type==="tf"){
+  html+=`<div class="${q.type==="tf"?"tfrow":"options"}">`;
+  q.opts.forEach((o,i)=>html+=`<button class="option ${answers[current]===i?"selected":""}" data-opt="${i}">${q.type==="mcq"?`<span class="optletter">${String.fromCharCode(65+i)}</span>`:""}<span>${o}</span></button>`);
+  html+="</div>";
+ }else if(q.type==="drag"){
+  html+=`<p class="hint">கீழே உள்ள சொல்லை இழுத்து வெற்றிடத்தில் விடுங்கள். கைப்பேசியில் சொல்லைத் தொட்டு, பின்னர் வெற்றிடத்தைத் தொடலாம்.</p><div class="bank" id="bank">`;
+  q.bank.forEach((v,i)=>html+=`<button draggable="true" class="chip ${answers[current]===v?"used":""}" data-chip="${i}">${v}</button>`);
+  html+=`</div><div class="dropzone ${answers[current]!==null?"filled":""}" id="dropzone" tabindex="0">${answers[current]===null?"இங்கே விடுக / இங்கே தொட்டு தெரிவுசெய்க":answers[current]}</div>`;
+ }else{
+  html+=`<p class="hint">இடப்புறச் சொல்லுக்குப் பொருத்தமான விளக்கத்தைத் தெரிவுசெய்க.</p><div class="matchrow"><div class="matchleft">${q.q.replace("சரியான இணையைத் தெரிவுசெய்க: ","")}</div><select id="matchSelect"><option value="">-- விடையைத் தெரிவுசெய்க --</option>`;
+  q.opts.forEach((o,i)=>html+=`<option value="${i}" ${answers[current]===i?"selected":""}>${o}</option>`);
+  html+=`</select></div>`;
+ }
+ content.innerHTML=html;
+ content.querySelectorAll("[data-opt]").forEach(b=>b.onclick=()=>{answers[current]=Number(b.dataset.opt);renderQuestion();renderNav()});
+ if(q.type==="drag"){
+  const bank=$("bank"), zone=$("dropzone");
+  bank.querySelectorAll("[data-chip]").forEach(chip=>{
+   chip.addEventListener("dragstart",e=>{e.dataTransfer.setData("text/plain",q.bank[Number(chip.dataset.chip)])});
+   chip.onclick=()=>{selectedChip=q.bank[Number(chip.dataset.chip)];bank.querySelectorAll(".chip").forEach(c=>c.style.outline="");chip.style.outline="3px solid #6c4ce3";};
+  });
+  zone.addEventListener("dragover",e=>{e.preventDefault();zone.style.borderColor="#6c4ce3"});
+  zone.addEventListener("dragleave",()=>zone.style.borderColor="");
+  zone.addEventListener("drop",e=>{e.preventDefault();setDrag(e.dataTransfer.getData("text/plain"))});
+  zone.onclick=()=>{if(selectedChip)setDrag(selectedChip)};
+  zone.onkeydown=e=>{if((e.key==="Enter"||e.key===" ")&&selectedChip){e.preventDefault();setDrag(selectedChip)}};
+ }
+ if(q.type==="match")$("matchSelect").onchange=e=>{answers[current]=e.target.value===""?null:Number(e.target.value);renderNav()};
+ renderNav();
+}
+function setDrag(value){if(!questions[current].bank.includes(value))return;answers[current]=value;selectedChip=null;renderQuestion();renderNav();}
+function next(){if(current<questions.length-1){current++;renderQuestion()}}
+function previous(){if(current>0){current--;renderQuestion()}}
+function submitQuiz(){
+ if(submitted)return;
+ const unanswered=answers.filter(a=>a===null).length;
+ const msg=unanswered?`${unanswered} வினாக்களுக்கு இன்னும் விடையளிக்கவில்லை. இருந்தாலும் சமர்ப்பிக்க விரும்புகிறீர்களா?`:"உங்கள் விடைகளைச் சமர்ப்பிக்க விரும்புகிறீர்களா?";
+ if(!confirm(msg))return;
+ submitted=true;showResults();
+}
+function answerText(q,a){
+ if(a===null)return "விடையளிக்கவில்லை";
+ if(q.type==="drag")return a;
+ return q.opts[a];
+}
+function showResults(){
+ let correct=0,wrong=0,blank=0;
+ questions.forEach((q,i)=>{if(answers[i]===null)blank++;else if(answers[i]===q.a)correct++;else wrong++});
+ const score=correct*2,percent=Math.round(score/40*100);
+ $("quiz").classList.add("hidden");$("results").classList.remove("hidden");
+ $("resultName").textContent="மாணவர்: "+($("studentName").value.trim()||"பெயர் குறிப்பிடப்படவில்லை");
+ $("scoreText").textContent=score+"/40";$("percentText").textContent=percent+"%";
+ $("scoreCircle").style.setProperty("--score",percent+"%");
+ $("correctCount").textContent=correct;$("wrongCount").textContent=wrong;$("blankCount").textContent=blank;
+ $("feedback").textContent=percent>=80?"அருமையான முயற்சி! உங்கள் அறிவு சிறப்பாக உள்ளது. 🌟":percent>=50?"நல்ல முயற்சி! தொடர்ந்து பயிற்சி செய்யுங்கள். 👍":"கவலைப்பட வேண்டாம். பாடத்தை மீண்டும் படித்து முயற்சி செய்யுங்கள். 💪";
+ $("reviewList").innerHTML=questions.map((q,i)=>{
+  const ok=answers[i]!==null&&answers[i]===q.a;
+  const correctText=q.type==="drag"?q.a:q.opts[q.a];
+  return `<div class="reviewitem ${ok?"correct":"wrong"}"><p><strong>${i+1}. ${q.q}</strong> <span class="small">(${ok?2:0}/2)</span></p><p>உங்கள் விடை: <strong>${answerText(q,answers[i])}</strong></p><p>சரியான விடை: <strong>${correctText}</strong></p><p class="small">${q.ex}</p></div>`;
+ }).join("");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function restart(){answers=Array(questions.length).fill(null);current=0;submitted=false;$("results").classList.add("hidden");$("welcome").classList.remove("hidden");$("studentName").value="";window.scrollTo({top:0,behavior:"smooth"});}
+$("startBtn").onclick=start;$("prevBtn").onclick=previous;$("nextBtn").onclick=next;$("submitBtn").onclick=submitQuiz;$("restartBtn").onclick=restart;
+</script>
+</body>
+</html>
